@@ -1,34 +1,26 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import db from './firebase';
+import MovieList from './MovieList';
+import MovieContext from './movie-context';
 
 function App() {
   const [movies, setMovies] = useState([]);
   const colRef = collection(db, 'movies'); // connecting to database
 
-  const getMovies = async () => {
-    // function grabs the movies and stores them in state
-    const data = await getDocs(colRef);
-    setMovies(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
-  };
-
   useEffect(() => {
+    const getMovies = async () => {
+      const data = await getDocs(colRef);
+      setMovies(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    };
+    console.log(movies);
     getMovies();
-    console.table(movies);
   }, []);
 
   return (
-    <div className='App'>
-      <ul>
-        {movies
-          .sort(function (a, b) {
-            return a.year - b.year;
-          })
-          .map(movie => {
-            return <li key={movie.id}>{`${movie.title} : ${movie.description}`}</li>;
-          })}
-      </ul>
-    </div>
+    <MovieContext.Provider value={movies}>
+      <MovieList />
+    </MovieContext.Provider>
   );
 }
 
