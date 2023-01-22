@@ -1,10 +1,9 @@
-import React, { useContext } from 'react';
-import MovieContext from './movie-context';
+import React from 'react';
 
-function Movie() {
+function Movie({ title, year }) {
   return (
     <div>
-      <h1></h1>
+      <h6>{`Title: ${title} -- Year: ${year}`}</h6>
     </div>
   );
 }

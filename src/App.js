@@ -13,7 +13,6 @@ function App() {
       const data = await getDocs(colRef);
       setMovies(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     };
-    console.log(movies);
     getMovies();
   }, []);
 
