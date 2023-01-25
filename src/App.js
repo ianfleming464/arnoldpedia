@@ -3,6 +3,7 @@ import { collection, getDocs } from 'firebase/firestore';
 import db from './firebase';
 import MovieList from './MovieList';
 import MovieContext from './movie-context';
+import Header from './Header';
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -14,10 +15,12 @@ function App() {
       setMovies(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
     };
     getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <MovieContext.Provider value={movies}>
+      <Header />
       <MovieList />
     </MovieContext.Provider>
   );
