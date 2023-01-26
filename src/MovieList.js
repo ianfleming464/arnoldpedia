@@ -17,10 +17,14 @@ function MovieList() {
 
   return (
     <>
-      <Grid container style={{ paddingTop: 70 }}>
+      <Grid
+        container
+        style={{ paddingTop: 70 }}
+        spacing={{ xs: 2, md: 3 }}
+        columns={{ xs: 4, sm: 8, md: 12 }}>
         {movies.map(movie => {
           return (
-            <Grid item>
+            <Grid item xs={2} sm={4} md={4}>
               <Movie movie={movie} />
             </Grid>
           );
