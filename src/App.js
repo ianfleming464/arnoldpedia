@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import db from './firebase';
 import MovieList from './MovieList';
+import MovieView from './MovieView';
 import MovieContext from './movie-context';
 import Header from './Header';
 
