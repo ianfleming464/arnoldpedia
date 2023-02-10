@@ -9,14 +9,13 @@ function MovieList() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const onMovieClick = movie => setSelectedMovie(movie);
-  console.log(movies);
 
   return (
     <>
       <Grid
         container
         style={{ paddingTop: 70 }}
-        spacing={{ xs: 2, md: 3 }}
+        spacing={{ xs: 3, md: 4 }}
         columns={{ xs: 4, sm: 8, md: 12 }}>
         {selectedMovie ? (
           <MovieView movie={selectedMovie} />
@@ -28,7 +27,11 @@ function MovieList() {
             .map(movie => {
               return (
                 <Grid key={movie.id} item xs={2} sm={4} md={4}>
-                  <Movie movie={movie} onClick={movie => onMovieClick(movie)} />
+                  <Movie
+                    movie={movie}
+                    onClick={movie => onMovieClick(movie)}
+                    sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
+                  />
                 </Grid>
               );
             })

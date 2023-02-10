@@ -7,7 +7,6 @@ import { useFirebaseFetch } from './hooks/useFirebaseFetch';
 
 function App() {
   let movies = useFirebaseFetch();
-  console.log(movies[1]);
 
   return (
     <MovieContext.Provider value={movies}>
