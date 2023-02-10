@@ -9,6 +9,7 @@ function MovieList() {
   const [selectedMovie, setSelectedMovie] = useState(null);
 
   const onMovieClick = movie => setSelectedMovie(movie);
+  console.log(movies);
 
   return (
     <>
@@ -20,13 +21,17 @@ function MovieList() {
         {selectedMovie ? (
           <MovieView movie={selectedMovie} />
         ) : (
-          movies.map(movie => {
-            return (
-              <Grid item xs={2} sm={4} md={4}>
-                <Movie key={movie.id} movie={movie} onClick={movie => onMovieClick(movie)} />
-              </Grid>
-            );
-          })
+          movies
+            .sort(function (a, b) {
+              return a.year - b.year;
+            })
+            .map(movie => {
+              return (
+                <Grid key={movie.id} item xs={2} sm={4} md={4}>
+                  <Movie movie={movie} onClick={movie => onMovieClick(movie)} />
+                </Grid>
+              );
+            })
         )}
       </Grid>
     </>

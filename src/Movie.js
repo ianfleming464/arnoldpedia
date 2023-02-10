@@ -4,7 +4,7 @@ import { Typography, CardContent, Button } from '@mui/material';
 
 function Movie({ movie, onClick }) {
   let { title, description, year, director } = movie;
-  console.table(title, description, year, director);
+
   return (
     <Card>
       <CardContent>

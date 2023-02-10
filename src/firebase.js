@@ -1,6 +1,5 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
-import { useEffect } from 'react';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_apiKey,
