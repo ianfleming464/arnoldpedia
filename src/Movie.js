@@ -7,7 +7,7 @@ function Movie({ movie, onClick }) {
   let { title, description, year, director, poster } = movie;
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} elevation='5'>
       <CardMedia component='img' alt='movie poster' src={poster} />
       <CardContent sx={{ flexGrow: 1 }}>
         <Typography gutterBottom variant='h5' component='div'>
@@ -23,15 +23,5 @@ function Movie({ movie, onClick }) {
 
 export default Movie;
 
-//   return (
-//     <Card>
-//       <CardContent>
-//         <Typography gutterBottom variant='h5' component='div'>
-//           {title}
-//         </Typography>
-//         <Typography variant='body2'>{year}</Typography>
-//         <Button onClick={() => onClick(movie)}>More info</Button>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+// DONE - added correct poster links.
+// TO DO - add an additional "Synopsis" field in Firebase with fuller plot synopsis, for MovieView.
