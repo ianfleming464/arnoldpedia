@@ -7,7 +7,7 @@ function Movie({ movie, onClick }) {
   let { title, description, year, director, poster, synopsis } = movie;
 
   return (
-    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }} elevation='5'>
+    <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <CardMedia component='img' alt='movie poster' src={poster} sx={{ objectFit: 'contain' }} />
       <CardContent>
         <Typography gutterBottom variant='h5' component='div' textAlign='center'>
