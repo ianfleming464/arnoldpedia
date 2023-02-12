@@ -18,7 +18,7 @@ function MovieList() {
         spacing={{ xs: 3, md: 4 }}
         columns={{ xs: 4, sm: 8, md: 12 }}>
         {selectedMovie ? (
-          <MovieView movie={selectedMovie} />
+          <MovieView movie={selectedMovie} previous={movie => onMovieClick(!movie)} />
         ) : (
           movies
             .sort(function (a, b) {

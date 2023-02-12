@@ -1,15 +1,18 @@
+import { Button, Typography } from '@mui/material';
 import React from 'react';
 
-function MovieView({ movie }) {
-  const { title, description, year } = movie;
+function MovieView({ movie, previous }) {
+  const { title, synopsis } = movie;
   if (!movie) {
     return null;
   }
   return (
     <>
-      <div>{title}</div>
-      <div>{description}</div>
-      <div>{year}</div>
+      <Typography variant='h2'>{title}</Typography>
+      <Button sx={{ mt: 3, ml: 1 }} onClick={() => previous(movie)} variant='contained'>
+        Back
+      </Button>
+      <Typography variant='body1'>{synopsis}</Typography>
     </>
   );
 }

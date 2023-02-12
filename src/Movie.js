@@ -22,7 +22,7 @@ function Movie({ movie, onClick }) {
             display: 'flex',
             justifyContent: 'space-between',
           }}>
-          <Button sx={{ mt: 3, ml: 1 }} variant='contained'>
+          <Button sx={{ mt: 3, ml: 1 }} variant='contained' onClick={() => onClick(movie)}>
             Learn more
           </Button>
           <Button sx={{ mt: 3, ml: 1 }} variant='contained'>
