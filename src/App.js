@@ -3,9 +3,10 @@ import MovieList from './MovieList';
 // import MovieView from './MovieView';
 import MovieContext from './movie-context';
 import Header from './Header';
-import Login from './Login';
+// import Login from './Login';
+// import Register from './Register';
 import { useFirebaseFetch } from './hooks/useFirebaseFetch';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './HomePage';
 
 function App() {
   let movies = useFirebaseFetch();
@@ -13,9 +14,8 @@ function App() {
   return (
     <MovieContext.Provider value={movies}>
       <Header />
-      <Routes>
-        <Route exact path='/' element={<MovieList />} />
-      </Routes>
+      {/* <MovieList /> */}
+      <HomePage />
     </MovieContext.Provider>
   );
 }
