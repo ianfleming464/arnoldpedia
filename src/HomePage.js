@@ -20,7 +20,7 @@ function HomePage() {
           <MovieList />
         )}
         <Button variant='contained' sx={{ alignSelf: 'center' }} onClick={viewMoviesHandler}>
-          See my movies
+          Arnold's movies
         </Button>
       </Box>
     </>
@@ -28,3 +28,5 @@ function HomePage() {
 }
 
 export default HomePage;
+
+// TO DO - change the Anold's movies button from a conditional to a ROUTE link
