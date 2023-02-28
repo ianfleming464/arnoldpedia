@@ -1,24 +1,29 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import App from './App';
+import {
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+} from 'react-router-dom';
+import MovieList from './routes/MovieList';
+import MovieView from './MovieView';
 import RootLayout from './routes/RootLayout';
-import MovieList from './MovieList';
-// import HomePage from './HomePage';
+import HomePage from '../src/routes/HomePage';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { appTheme } from './theme';
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <RootLayout />,
-    children: [
-      { path: '/', element: <App /> },
-      { path: '/movies', element: <MovieList /> },
-    ],
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route path='/' element={<RootLayout />}>
+      <Route index element={<HomePage />} />
+      <Route path='movies' element={<MovieList />}>
+        <Route path=':id' element={<MovieView />} />
+      </Route>
+    </Route>,
+  ),
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -29,3 +34,5 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>,
 );
+
+// 0ag8chBP7DJGrQhvbcq8

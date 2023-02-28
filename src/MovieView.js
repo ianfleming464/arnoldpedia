@@ -2,7 +2,8 @@ import { Button, Typography } from '@mui/material';
 import React from 'react';
 
 function MovieView({ movie, previous }) {
-  const { title, synopsis } = movie;
+  const { title, synopsis, id } = movie;
+
   if (!movie) {
     return null;
   }
