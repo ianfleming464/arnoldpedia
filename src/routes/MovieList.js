@@ -1,11 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import db from '../firebase';
+import { collection, getDocs } from 'firebase/firestore';
 import Movie from '../Movie';
+import MovieView from '../MovieView';
+import { Outlet } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { useFirebaseFetch } from '../hooks/useFirebaseFetch';
+import { useParams } from 'react-router-dom';
 
 function MovieList() {
-  let movies = useFirebaseFetch();
-  console.log(movies);
+  const [movies, setMovies] = useState([]);
+  const [selectedMovie, setSelectedMovie] = useState(null);
+  const colRef = collection(db, 'movies');
+  const { movieId } = useParams();
+
+  useEffect(() => {
+    const getMovies = async () => {
+      const data = await getDocs(colRef);
+      setMovies(data.docs.map(doc => ({ ...doc.data(), id: doc.id })));
+    };
+    getMovies();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
@@ -23,6 +38,7 @@ function MovieList() {
               <Grid key={movie.id} item xs={2} sm={4} md={4}>
                 <Movie
                   movie={movie}
+                  onClick={movie => setSelectedMovie(movie)}
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 />
               </Grid>

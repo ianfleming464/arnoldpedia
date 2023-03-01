@@ -1,9 +1,12 @@
 import React from 'react';
+import MovieView from './MovieView';
 import Card from '@mui/material/Card';
 import { Typography, CardContent, CardActions, CardMedia, Button } from '@mui/material';
+import { Link, useParams } from 'react-router-dom';
 
 function Movie({ movie }) {
-  let { title, year, poster } = movie;
+  let { title, year, poster, id } = movie;
+  // const { movieId } = useParams();
 
   return (
     <>
@@ -17,15 +20,19 @@ function Movie({ movie }) {
           <Typography variant='subtitle1' color='text.secondary' textAlign='center'>
             {year}
           </Typography>
+          <Typography variant='subtitle1' color='text.secondary' textAlign='center'>
+            {id}
+          </Typography>
           <CardActions
             sx={{
               display: 'flex',
               justifyContent: 'space-between',
             }}>
             <Button sx={{ mt: 3, ml: 1 }} variant='contained'>
-              Learn more
+              <Link to={`${id}`} state={movie}>
+                Learn more
+              </Link>
             </Button>
-
             <Button sx={{ mt: 3, ml: 1 }} variant='contained'>
               Add to Favourites
             </Button>

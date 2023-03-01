@@ -1,19 +1,19 @@
-import { Button, Typography } from '@mui/material';
+import { Typography } from '@mui/material';
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
-function MovieView({ movie, previous }) {
-  const { title, synopsis, id } = movie;
+function MovieView() {
+  // let { movieId } = useParams();
+  const location = useLocation();
+  const data = location.state;
+  console.log(data);
 
-  if (!movie) {
-    return null;
-  }
   return (
     <>
-      <Typography variant='h2'>{title}</Typography>
-      <Button sx={{ mt: 3, ml: 1 }} onClick={() => previous(movie)} variant='contained'>
-        Back
-      </Button>
-      <Typography variant='body1'>{synopsis}</Typography>
+      <Typography variant='h2' sx={{ m: 10 }}>
+        Hi
+      </Typography>
+      <Typography variant='body1'>Movie View 2</Typography>
     </>
   );
 }

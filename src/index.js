@@ -18,9 +18,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<RootLayout />}>
       <Route index element={<HomePage />} />
-      <Route path='movies' element={<MovieList />}>
-        <Route path=':id' element={<MovieView />} />
-      </Route>
+      <Route path='/movies' element={<MovieList />} />
+      <Route path='/movies/:movieId' element={<MovieView />} />
     </Route>,
   ),
 );
@@ -34,5 +33,3 @@ root.render(
     </ThemeProvider>
   </React.StrictMode>,
 );
-
-// 0ag8chBP7DJGrQhvbcq8
