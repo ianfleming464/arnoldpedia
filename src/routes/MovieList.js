@@ -38,7 +38,6 @@ function MovieList() {
               <Grid key={movie.id} item xs={2} sm={4} md={4}>
                 <Movie
                   movie={movie}
-                  onClick={movie => setSelectedMovie(movie)}
                   sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}
                 />
               </Grid>
