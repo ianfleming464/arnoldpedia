@@ -2,16 +2,12 @@ import React, { useState, useEffect } from 'react';
 import db from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Movie from '../Movie';
-import MovieView from '../MovieView';
-import { Outlet } from 'react-router-dom';
 import { Grid } from '@mui/material';
-import { useParams } from 'react-router-dom';
 
 function MovieList() {
   const [movies, setMovies] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
+
   const colRef = collection(db, 'movies');
-  const { movieId } = useParams();
 
   useEffect(() => {
     const getMovies = async () => {
