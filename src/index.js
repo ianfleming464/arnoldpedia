@@ -11,6 +11,7 @@ import MovieList from './routes/MovieList';
 import MovieView from './MovieView';
 import RootLayout from './routes/RootLayout';
 import HomePage from '../src/routes/HomePage';
+import Login from './routes/Login';
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import { appTheme } from './theme';
 
@@ -20,6 +21,7 @@ const router = createBrowserRouter(
       <Route index element={<HomePage />} />
       <Route path='/movies' element={<MovieList />} />
       <Route path='/movies/:id' element={<MovieView />} />
+      <Route path='login' element={<Login />} />
     </Route>,
   ),
 );
