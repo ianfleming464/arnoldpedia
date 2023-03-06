@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import db from '../firebase';
+import { db } from '../firebase';
 import { collection, getDocs } from 'firebase/firestore';
 import Movie from '../Movie';
 import { Grid } from '@mui/material';
