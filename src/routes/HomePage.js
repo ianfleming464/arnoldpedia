@@ -8,7 +8,7 @@ function HomePage() {
 
   return (
     <>
-      {/* {!user ? (
+      {!user ? (
         <Navigate to='login' />
       ) : (
         <Box display='flex' flexDirection='column'>
@@ -20,8 +20,8 @@ function HomePage() {
             <Link to='movies'> Arnold's Movies</Link>
           </Button>
         </Box>
-      )} */}
-      <Box display='flex' flexDirection='column'>
+      )}
+      {/* <Box display='flex' flexDirection='column'>
         <Typography variant='h1' sx={{ m: 10, alignSelf: 'center' }} gutterBottom>
           HomePage
         </Typography>
@@ -29,7 +29,7 @@ function HomePage() {
         <Button variant='contained' sx={{ alignSelf: 'center' }}>
           <Link to='movies'> Arnold's Movies</Link>
         </Button>
-      </Box>
+      </Box> */}
       ;
     </>
   );
