@@ -106,7 +106,9 @@ function Login() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href='register'>"Don't have an account? Sign Up"</Link>
+                <Link href='register' variant='body2'>
+                  No account? Sign Up
+                </Link>
               </Grid>
             </Grid>
           </Box>

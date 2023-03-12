@@ -1,28 +1,48 @@
-import React from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   Avatar,
   Button,
   TextField,
   FormControlLabel,
   Checkbox,
-  Link,
   Grid,
+  Link,
   Box,
   Typography,
   Container,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from '../firebase';
 
-const handleSubmit = event => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  console.log({
-    user: data.get('user'),
-    email: data.get('email'),
-    password: data.get('password'),
-  });
-};
+// const handleSubmit = event => {
+//   event.preventDefault();
+//   const data = new FormData(event.currentTarget);
+//   console.log({
+//     user: data.get('user'),
+//     email: data.get('email'),
+//     password: data.get('password'),
+//   });
+// };
 
 function Register() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
+  const [user, loading, error] = useAuthState(auth);
+  const navigate = useNavigate();
+
+  const register = () => {
+    if (!name) alert('Please enter name');
+    registerWithEmailAndPassword(name, email, password);
+  };
+
+  useEffect(() => {
+    if (loading) return;
+    if (user) navigate('/movies');
+  }, [user, loading]);
+
   return (
     <>
       <Container component='main' maxWidth='xs'>
@@ -37,23 +57,26 @@ function Register() {
           <Typography component='h1' variant='h5'>
             Register
           </Typography>
-          <Box component='form' onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1 }}>
             <TextField
               margin='normal'
               required
               fullWidth
-              id='user'
-              label='Username'
-              name='user'
-              autoComplete='username'
-              autoFocus></TextField>
+              id='name'
+              label='Name'
+              value={name}
+              onChange={e => setName(e.target.value)}
+              autoComplete='name'
+              autoFocus
+            />
             <TextField
               margin='normal'
               required
               fullWidth
               id='email'
               label='Email Address'
-              name='email'
+              value={email}
+              onChange={e => setEmail(e.target.value)}
               autoComplete='email'
               autoFocus
             />
@@ -61,7 +84,8 @@ function Register() {
               margin='normal'
               required
               fullWidth
-              name='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               label='Password'
               type='password'
               id='password'
@@ -71,8 +95,21 @@ function Register() {
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
             />
-            <Button type='submit' fullWidth variant='contained' sx={{ mt: 3, mb: 2 }}>
+            <Button
+              onClick={register}
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 1 }}>
               Register
+            </Button>
+            <Button
+              onClick={signInWithGoogle}
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 1, mb: 1 }}>
+              Register with Google
             </Button>
             <Grid container>
               <Grid item>

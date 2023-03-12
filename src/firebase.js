@@ -55,7 +55,7 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
-const registerWithEmailAndPAssword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -90,7 +90,7 @@ export {
   db,
   signInWithGoogle,
   logInWithEmailAndPassword,
-  registerWithEmailAndPAssword,
+  registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
 };
