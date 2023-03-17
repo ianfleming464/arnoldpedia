@@ -1,30 +1,19 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useNavigate } from 'react-router-dom';
+import { auth, registerWithEmailAndPassword } from '../firebase';
 import {
   Avatar,
   Button,
   TextField,
   FormControlLabel,
   Checkbox,
-  Grid,
   Link,
+  Grid,
   Box,
   Typography,
   Container,
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { auth, registerWithEmailAndPassword, signInWithGoogle } from '../firebase';
-
-// const handleSubmit = event => {
-//   event.preventDefault();
-//   const data = new FormData(event.currentTarget);
-//   console.log({
-//     user: data.get('user'),
-//     email: data.get('email'),
-//     password: data.get('password'),
-//   });
-// };
 
 function Register() {
   const [email, setEmail] = useState('');
@@ -39,8 +28,10 @@ function Register() {
   };
 
   useEffect(() => {
-    if (loading) return;
-    if (user) navigate('/movies');
+    if (loading) {
+      return;
+    }
+    if (user) navigate('/');
   }, [user, loading]);
 
   return (
@@ -57,60 +48,43 @@ function Register() {
           <Typography component='h1' variant='h5'>
             Register
           </Typography>
-          <Box sx={{ mt: 1 }}>
+          <Box component='form' noValidate sx={{ mt: 1 }}>
             <TextField
               margin='normal'
               required
               fullWidth
-              id='name'
-              label='Name'
+              label='name'
               value={name}
               onChange={e => setName(e.target.value)}
-              autoComplete='name'
-              autoFocus
-            />
+              autoFocus></TextField>
             <TextField
               margin='normal'
               required
               fullWidth
-              id='email'
               label='Email Address'
+              type='email'
               value={email}
               onChange={e => setEmail(e.target.value)}
-              autoComplete='email'
               autoFocus
             />
             <TextField
               margin='normal'
               required
               fullWidth
-              value={password}
-              onChange={e => setPassword(e.target.value)}
               label='Password'
               type='password'
-              id='password'
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               autoComplete='current-password'
             />
             <FormControlLabel
               control={<Checkbox value='remember' color='primary' />}
               label='Remember me'
             />
-            <Button
-              onClick={register}
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 3, mb: 1 }}>
+            <Button onClick={register} fullWidth variant='contained' sx={{ mt: 2, mb: 2 }}>
               Register
             </Button>
-            <Button
-              onClick={signInWithGoogle}
-              type='submit'
-              fullWidth
-              variant='contained'
-              sx={{ mt: 1, mb: 1 }}>
-              Register with Google
-            </Button>
+
             <Grid container>
               <Grid item>
                 <Link href='login'>Already have an account? Login here</Link>
@@ -124,20 +98,3 @@ function Register() {
 }
 
 export default Register;
-
-// function Copyright(props) {
-//   return (
-//     <Typography variant="body2" color="text.secondary" align="center" {...props}>
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://mui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
-
-// const theme = createTheme();
-
-// export default function SignIn() {
