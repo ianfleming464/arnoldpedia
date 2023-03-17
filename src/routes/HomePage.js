@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Typography, Box, Button } from '@mui/material';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { auth, db, logout } from '../firebase';
 import { query, collection, getDocs, where } from 'firebase/firestore';
-import Login from './Login';
 
 function HomePage() {
   const [user, loading, error] = useAuthState(auth);
