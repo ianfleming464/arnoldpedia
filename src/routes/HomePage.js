@@ -45,17 +45,9 @@ function HomePage() {
   return (
     <>
       <Box display='flex' flexDirection='column'>
-        <Typography variant='h1' sx={{ m: 10, alignSelf: 'center' }} gutterBottom>
-          HomePage
-        </Typography>
         <Image
           src={imageUrl}
-          height='100%
-'
-          width='
-100%
-'
-          fit='cover'
+          fit='none'
           duration={3000}
           easing='
 cubic-bezier(0.7, 0, 0.6, 1)'
