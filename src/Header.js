@@ -1,16 +1,22 @@
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase';
 import { styled } from '@mui/material/styles';
 
 function Header() {
+  const [user, loading, error] = useAuthState(auth);
+
+  console.log(user);
   return (
     <AppBar position='fixed'>
-      <Toolbar>
+      <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <StyledIconButton edge='start' color='inherit'>
           <LogoImg src={require('./assets/image.svg').default} alt='logo' />
         </StyledIconButton>
-        <HeaderTitle variant='h6' component='h1'>
+        <HeaderTitle variant='h4' component='h1'>
           A R N O L D P E D I A
         </HeaderTitle>
+        <CurrentLoggedIn variant>logged in as: {user?.email}</CurrentLoggedIn>
       </Toolbar>
     </AppBar>
   );
@@ -31,7 +37,11 @@ const StyledIconButton = styled(IconButton)({
 });
 
 const LogoImg = styled('img')({
-  width: '32px',
-  height: '32px',
+  width: '40px',
+  height: '40px',
   display: 'block',
+});
+
+const CurrentLoggedIn = styled(Typography)({
+  marginRight: 16,
 });

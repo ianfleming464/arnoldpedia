@@ -49,18 +49,13 @@ function HomePage() {
           src={imageUrl}
           fit='none'
           duration={3000}
-          easing='
-cubic-bezier(0.7, 0, 0.6, 1)'
+          easing='cubic-bezier(0.7, 0, 0.6, 1)'
           showLoading={true}
           errorIcon={true}
           shift={null}
-          distance='
-100px
-'
+          distance='100px'
           shiftDuration={900}
-          bgColor='
-inherit
-'
+          bgColor='inherit'
         />
 
         <Typography variant='p' sx={{ m: 10, alignSelf: 'center' }} gutterBottom>
