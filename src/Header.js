@@ -1,12 +1,10 @@
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase';
+import { useUserName } from './hooks/useUserName';
 import { styled } from '@mui/material/styles';
 
 function Header() {
-  const [user, loading, error] = useAuthState(auth);
+  const name = useUserName();
 
-  console.log(user);
   return (
     <AppBar position='fixed'>
       <Toolbar sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -16,7 +14,7 @@ function Header() {
         <HeaderTitle variant='h4' component='h1'>
           A R N O L D P E D I A
         </HeaderTitle>
-        <CurrentLoggedIn variant>logged in as: {user?.email}</CurrentLoggedIn>
+        <CurrentLoggedIn variant>logged in as: {name}</CurrentLoggedIn>
       </Toolbar>
     </AppBar>
   );
