@@ -2,18 +2,17 @@ import { useState, useEffect } from 'react';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { auth, db } from '../firebase';
 
-export const useUserName = () => {
-  const [name, setName] = useState('');
+export const useUserObject = () => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    const fetchUserName = async () => {
+    const fetchUserData = async () => {
       try {
         await new Promise(resolve => {
           // Wait for auth state to be loaded
           const unsubscribe = auth.onAuthStateChanged(user => {
-            if (user) {
-              resolve(user);
-            }
+            setUser(user);
+            resolve(user);
           });
           return unsubscribe;
         });
@@ -22,7 +21,7 @@ export const useUserName = () => {
           const q = query(collection(db, 'users'), where('uid', '==', auth.currentUser.uid));
           const doc = await getDocs(q);
           const data = doc.docs[0].data();
-          setName(data.name);
+          setUser(prevUser => ({ ...prevUser, name: data.name }));
         }
       } catch (err) {
         console.error(err);
@@ -30,8 +29,8 @@ export const useUserName = () => {
       }
     };
 
-    fetchUserName();
+    fetchUserData();
   }, []);
 
-  return name;
+  return { user, name: user?.name };
 };

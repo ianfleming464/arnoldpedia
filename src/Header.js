@@ -1,9 +1,11 @@
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { useUserName } from './hooks/useUserName';
+import { useUserObject } from './hooks/useUserObject';
 import { styled } from '@mui/material/styles';
+import { useState, useEffect } from 'react';
 
 function Header() {
-  const name = useUserName();
+  const currentUser = useUserObject();
+  console.log(currentUser);
 
   return (
     <AppBar position='fixed'>
@@ -14,11 +16,11 @@ function Header() {
         <HeaderTitle variant='h4' component='h1'>
           A R N O L D P E D I A
         </HeaderTitle>
-        {name ? (
-          <CurrentLoggedIn variant>logged in as: {name}</CurrentLoggedIn>
+        {/* {name ? (
+          <CurrentLoggedIn>logged in as: {name ? name : null}</CurrentLoggedIn>
         ) : (
           <div sx={{ flexGrow: '1' }} />
-        )}
+        )} */}
       </Toolbar>
     </AppBar>
   );

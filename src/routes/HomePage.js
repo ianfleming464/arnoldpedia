@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useUserName } from '../hooks/useUserName';
+import { useUserObject } from '../hooks/useUserObject';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { Typography, Box, Button } from '@mui/material';
@@ -11,7 +11,7 @@ import { Image } from 'mui-image';
 function HomePage() {
   const [user, loading, error] = useAuthState(auth);
   const [imageUrl, setImageUrl] = useState('');
-  const name = useUserName();
+  // const name = useUserName();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -47,7 +47,7 @@ function HomePage() {
         />
 
         <Typography variant='p' sx={{ m: 10, alignSelf: 'center' }} gutterBottom>
-          Logged in as {name}, {user?.email}
+          {/* Logged in as {name}, {user?.email} */}
         </Typography>
         <Button variant='contained' sx={{ alignSelf: 'center' }}>
           <Link to='movies'> Arnold's Movies</Link>
