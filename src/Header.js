@@ -16,11 +16,13 @@ function Header() {
         <HeaderTitle variant='h4' component='h1'>
           A R N O L D P E D I A
         </HeaderTitle>
-        {/* {name ? (
-          <CurrentLoggedIn>logged in as: {name ? name : null}</CurrentLoggedIn>
+        {currentUser.name ? (
+          <CurrentLoggedIn>
+            logged in as: {currentUser.name ? currentUser.name : null}
+          </CurrentLoggedIn>
         ) : (
           <div sx={{ flexGrow: '1' }} />
-        )} */}
+        )}
       </Toolbar>
     </AppBar>
   );
