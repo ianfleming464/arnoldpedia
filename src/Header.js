@@ -1,5 +1,4 @@
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { teal } from '@mui/material/colors';
 import { useUserName } from './hooks/useUserName';
 import { styled } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
@@ -48,5 +47,4 @@ const LogoImg = styled('img')({
 
 const CurrentLoggedIn = styled(Typography)({
   marginRight: 16,
-  color: teal,
 });

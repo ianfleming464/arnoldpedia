@@ -1,18 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useUserName } from '../hooks/useUserName';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { ref, getDownloadURL } from 'firebase/storage';
-import { Typography, Box, Button } from '@mui/material';
+import { ref, getDownloadURL, getStorage } from 'firebase/storage';
+import { Typography, Box, Button, Card, CardMedia, Grid } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import { auth, db, logout, storage } from '../firebase';
-import { query, collection, getDocs, where } from 'firebase/firestore';
-import { Image } from 'mui-image';
+import { auth, logout } from '../firebase';
 
 function HomePage() {
   const [user, loading, error] = useAuthState(auth);
   const [imageUrl, setImageUrl] = useState('');
-  const name = useUserName();
   const navigate = useNavigate();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (loading) return;
@@ -20,6 +17,7 @@ function HomePage() {
   }, [user, loading]);
 
   useEffect(() => {
+    const storage = getStorage();
     const storageRef = ref(storage, 'gs://arnoldpedia.appspot.com/arnold.jpeg');
     getDownloadURL(storageRef)
       .then(url => {
@@ -30,33 +28,48 @@ function HomePage() {
       });
   }, []);
 
+  const handleImageLoad = () => {
+    setIsLoaded(true);
+  };
+
   return (
     <>
-      <Box display='flex' flexDirection='column'>
-        <Image
-          src={imageUrl}
-          fit='none'
-          duration={3000}
-          easing='cubic-bezier(0.7, 0, 0.6, 1)'
-          showLoading={true}
-          errorIcon={true}
-          shift={null}
-          distance='100px'
-          shiftDuration={900}
-          bgColor='inherit'
-        />
+      <Box display='flex' flexDirection='column' alignItems='center' justifyContent='center'>
+        <Card
+          sx={{
+            width: '50%',
+            p: 5,
+            m: 5,
+            boxShadow: '0 0 10px rgba(0, 0, 0, 0.3)',
+            opacity: isLoaded ? 1 : 0,
+            transition: 'opacity 1s ease',
+          }}>
+          <CardMedia
+            component='img'
+            src={imageUrl}
+            alt='Arnold'
+            onLoad={handleImageLoad}
+            sx={{
+              objectFit: 'contain',
+              height: '100%',
+              width: '100%',
+            }}
+          />
+        </Card>
 
-        <Typography variant='p' sx={{ m: 10, alignSelf: 'center' }} gutterBottom>
-          {/* Logged in as {name}, {user?.email} */}
-        </Typography>
-        <Button variant='contained' sx={{ alignSelf: 'center' }}>
-          <Link to='movies'> Arnold's Movies</Link>
-        </Button>
-        <Button variant='contained' sx={{ alignSelf: 'center' }} onClick={logout}>
-          Logout
-        </Button>
+        <Grid container spacing={2} justifyContent='center'>
+          <Grid item>
+            <Button variant='contained' sx={{ m: 1 }}>
+              <Link to='movies'>Arnold's Movies</Link>
+            </Button>
+          </Grid>
+          <Grid item>
+            <Button variant='contained' onClick={logout} sx={{ m: 1 }}>
+              Logout
+            </Button>
+          </Grid>
+        </Grid>
       </Box>
-      )}
     </>
   );
 }
