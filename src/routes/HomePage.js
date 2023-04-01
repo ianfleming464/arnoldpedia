@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useUserObject } from '../hooks/useUserObject';
+import { useUserName } from '../hooks/useUserName';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, getDownloadURL } from 'firebase/storage';
 import { Typography, Box, Button } from '@mui/material';
@@ -11,7 +11,7 @@ import { Image } from 'mui-image';
 function HomePage() {
   const [user, loading, error] = useAuthState(auth);
   const [imageUrl, setImageUrl] = useState('');
-  // const name = useUserName();
+  const name = useUserName();
   const navigate = useNavigate();
 
   useEffect(() => {

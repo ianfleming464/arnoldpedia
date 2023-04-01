@@ -1,11 +1,11 @@
 import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { useUserObject } from './hooks/useUserObject';
+import { teal } from '@mui/material/colors';
+import { useUserName } from './hooks/useUserName';
 import { styled } from '@mui/material/styles';
 import { useState, useEffect } from 'react';
 
 function Header() {
-  const currentUser = useUserObject();
-  console.log(currentUser);
+  const currentUser = useUserName();
 
   return (
     <AppBar position='fixed'>
@@ -16,10 +16,8 @@ function Header() {
         <HeaderTitle variant='h4' component='h1'>
           A R N O L D P E D I A
         </HeaderTitle>
-        {currentUser.name ? (
-          <CurrentLoggedIn>
-            logged in as: {currentUser.name ? currentUser.name : null}
-          </CurrentLoggedIn>
+        {currentUser ? (
+          <CurrentLoggedIn>logged in as: {currentUser ? currentUser : null}</CurrentLoggedIn>
         ) : (
           <div sx={{ flexGrow: '1' }} />
         )}
@@ -50,4 +48,5 @@ const LogoImg = styled('img')({
 
 const CurrentLoggedIn = styled(Typography)({
   marginRight: 16,
+  color: teal,
 });
