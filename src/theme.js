@@ -5,6 +5,9 @@ export const appTheme = createTheme({
     primary: {
       main: '#938795',
     },
+    background: {
+      default: '#899587', // change this to the color you want
+    },
   },
   typography: {
     fontFamily: 'Calibri',
