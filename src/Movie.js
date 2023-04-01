@@ -1,12 +1,10 @@
 import React from 'react';
-import MovieView from './MovieView';
 import Card from '@mui/material/Card';
 import { Typography, CardContent, CardActions, CardMedia, Button } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function Movie({ movie }) {
   let { title, year, poster, id } = movie;
-  // const { movieId } = useParams();
 
   return (
     <>
@@ -28,7 +26,7 @@ function Movie({ movie }) {
               display: 'flex',
               justifyContent: 'space-between',
             }}>
-            <Button sx={{ mt: 3, ml: 1 }} variant='contained'>
+            <Button sx={{ mt: 3, ml: 1 }} variant='contained  '>
               <Link to={`${id}`} state={movie}>
                 Learn more
               </Link>

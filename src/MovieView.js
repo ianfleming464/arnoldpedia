@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Button, Grid, Box } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -6,6 +6,10 @@ function MovieView() {
   const location = useLocation();
   const navigate = useNavigate();
   const data = location.state;
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const synopsis = data.synopsis.replace(/[\r\n]{2,}/g, '\n\n');
 
