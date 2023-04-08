@@ -6,7 +6,7 @@ export const appTheme = createTheme({
       main: '#938795',
     },
     background: {
-      default: '#899587', // change this to the color you want
+      default: '#abdbe3', // change this to the color you want
     },
   },
   typography: {
