@@ -72,5 +72,3 @@ export {
   // sendPasswordReset,
   logout,
 };
-
-// TO DO - enable password reset email. Look at Google signin.
